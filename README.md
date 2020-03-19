@@ -2,7 +2,7 @@
 modulo-2-evaluacion-final-evalopezm created by GitHub Classroom
 
 
-2nd Term Evaluation Project: Creating a favourite Series archive.
+:television: 2nd Term Evaluation Project: Creating a favourite Series archive.
 
 On this site the user can search series by name, select and storage her favourite ones. 
 She can add and delete series using different methods in an interactive way.
