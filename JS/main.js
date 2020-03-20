@@ -26,9 +26,11 @@ collectSearch();
 function paintFoundSeries () {
     let serieData = '';
     for (const serie of series) {
+        console.log(serie.show.name);
+        
         serieData += `<article class='found-serie'>`
-        serieData += `<h2 class='serie-title'>${serie[i].show.name}</h2>`
-        serieData += `<img class='serie-img' src='${serie[i].show.image.medium}' alt='${serie[i].show.name}'>`
+        serieData += `<h2 class='serie-title'>${serie.show.name}</h2>`
+        serieData += `<img class='serie-img' src='${serie.show.image.medium}' alt='${serie.show.name}'>`
         serieData +=`</article>`
     }
     foundSerie.innerHTML = serieData;
