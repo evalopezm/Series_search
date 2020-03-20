@@ -12,24 +12,24 @@ function collectSearch () {
     fetch (`http://api.tvmaze.com/search/shows?q=:${userSearch.value}`)
     .then (response => response.json())
     .then (data => {
-        console.log (data);
+        // console.log (data);
         series = data;
-    paintFoundSeries;
+    paintFoundSeries ();
     })
 }
 collectSearch();
 
 // for series [i] (i=0, i < series.length, i++) {
-
 // };
 
 //Paint series
-const paintFoundSeries = () => {
+function paintFoundSeries () {
     let serieData = '';
     for (const serie of series) {
         serieData += `<article class='found-serie'>`
         serieData += `<h2 class='serie-title'>${serie[i].show.name}</h2>`
         serieData += `<img class='serie-img' src='${serie[i].show.image.medium}' alt='${serie[i].show.name}'>`
+        serieData +=`</article>`
     }
     foundSerie.innerHTML = serieData;
 }
@@ -41,7 +41,6 @@ searchButton.addEventListener ('click', collectSearch);
 
 
 
-//Paint found series
 
 //listen click in one serie
 //change css
