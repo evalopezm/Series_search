@@ -12,14 +12,14 @@
     margin: 15px;
 }
 
-.serie-card {
+.found-series {
     box-sizing: border-box;
     border: 3px solid #666;
     display: flex;
     flex-wrap: wrap;
 }
 
-.found-serie {
+.serie-card {
     background-color: darksalmon;
     margin: 3px;
     color: maroon;
