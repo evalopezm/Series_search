@@ -59,6 +59,7 @@ function addSerieToFavourites (ev) {
         image: selectedSerie.show.image.medium,
         id: selectedSerie.show.id
     });
+    
     paintFavouriteSeries ();
 };
 
@@ -68,10 +69,10 @@ const getFavouriteHtmlCode = favourite => {
     favouriteHtmlCode += `<p>${favourite.name}</p>`;
     favouriteHtmlCode += `<img class='favourite-img' src='${favourite.image}' alt='${favourite.name}'>`;
     favouriteHtmlCode += `</li>`;
+    return favouriteHtmlCode; 
 }
 
 const paintFavouriteSeries = () => {
-    debugger;
     favouriteSeries.innerHTML = '';
     for (const favourite of favourites) {
         favouriteSeries.innerHTML += getFavouriteHtmlCode(favourite);
