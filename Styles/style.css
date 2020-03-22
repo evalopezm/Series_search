@@ -1,3 +1,9 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
 .main-box {
     box-sizing: border-box;
     display: flex;
@@ -5,32 +11,31 @@
     
 }
 
-.results-list {
-    box-sizing: border-box;
-    border: 3px solid rgb(134, 36, 36);
-    width: 50vw;
-    margin: 15px;
+.title {
+    color: rgb(97, 96, 96);
 }
 
 .found-series {
     box-sizing: border-box;
-    border: 3px solid #666;
+    width: 60vw;
+    border-left: 3px solid lightgray;
     display: flex;
     flex-wrap: wrap;
+    padding-left: 30px;
 }
 
 .serie-card {
-    background-color: darksalmon;
+    background-color: #ffbd1b;
     margin: 3px;
-    color: maroon;
+    color: #265b5f;
     border-radius: 10px;
     padding: 5px;
 }
 
 .favourite-serie {
-    background-color: maroon;
+    background-color: #265b5f;
     margin: 3px;
-    color:  darksalmon;
+    color:  #ffbd1b;
     border-radius: 10px;
     padding: 5px;
 }
