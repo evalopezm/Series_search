@@ -34,3 +34,20 @@
     border-radius: 10px;
     padding: 5px;
 }
+
+.js-favourite-serie-card {
+    list-style: none;
+    padding: 0;
+}
+
+.favourite-li {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.favourite-img {
+    height: 100px;
+    width: 70px;
+    border-radius: 10px;
+}

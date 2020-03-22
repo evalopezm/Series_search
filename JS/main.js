@@ -1,6 +1,6 @@
 'use strict';
 
-//global constants
+//global constants and variables
 const searchButton = document.querySelector('.search-btn');
 const userSearch = document.querySelector('.user-search');
 const foundSeries = document.querySelector('.found-series');
@@ -16,12 +16,10 @@ function collectSearch () {
     .then (response => response.json())
     .then (data => {
         series = data;    
-        // console.log(series);
     paintFoundSeries ();
     })
 }
 collectSearch();
-
 
 // Paint series
 function paintFoundSeries () {
@@ -42,6 +40,12 @@ function paintFoundSeries () {
     ListenSelectedSerie ();
 }
 
+//Unify favourites actions
+// function favActions (){
+//     addSerieToFavourites ();
+//     changeFavouriteColor ()
+// }
+
 //Add to favourites
 function addSerieToFavourites (ev) {
     //identify clicked element id
@@ -53,32 +57,44 @@ function addSerieToFavourites (ev) {
             selectedSerie = serie;
         }
     }
+    //search in favs
+    let SerieInFavourites = undefined;
+    for (const favourite of favourites) { 
+        if (favourite.id == clickedSerie) {
+            selectedSerie = serie;
+        }
+    }
     //add to favourites array
     favourites.push({
         name: selectedSerie.show.name,
         image: selectedSerie.show.image.medium,
         id: selectedSerie.show.id
     });
-    
+    setInLocalStorage ();
     paintFavouriteSeries ();
 };
 
+//Add to LocalStorage
+const setInLocalStorage = () => {
+    const favouritesInString = JSON.stringify(favourites);
+    localStorage.setItem('favourites', favouritesInString);
+  };
+
+//Paint favourites
 const getFavouriteHtmlCode = favourite => {
     let favouriteHtmlCode = '';
-    favouriteHtmlCode += `<li>`;
+    favouriteHtmlCode += `<li class='favourite-li'>`;
     favouriteHtmlCode += `<p>${favourite.name}</p>`;
     favouriteHtmlCode += `<img class='favourite-img' src='${favourite.image}' alt='${favourite.name}'>`;
     favouriteHtmlCode += `</li>`;
     return favouriteHtmlCode; 
 }
-
 const paintFavouriteSeries = () => {
     favouriteSeries.innerHTML = '';
     for (const favourite of favourites) {
         favouriteSeries.innerHTML += getFavouriteHtmlCode(favourite);
     }
 }
-
 
 
 
@@ -94,12 +110,10 @@ const ListenSelectedSerie = () => {
 
 
 
-
-
 //change css
 //If series is in favourites, else....
 
-//localStorage keep
+
 //localStorage read
 //localStorage paint
 //Others: reset button
