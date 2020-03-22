@@ -50,29 +50,34 @@ function paintFoundSeries () {
 function addSerieToFavourites (ev) {
     //identify clicked element id
     const clickedSerie = ev.target.id;
-    //Asociate id with element from array
-    let selectedSerie;
-    for (const serie of series) { 
-        if (serie.show.id == clickedSerie) {
-            selectedSerie = serie;
-        }
-    }
-    //search in favs
-    let SerieInFavourites = undefined;
+    //search in favs (add or not to add an item already there)
+    let serieInFavourites = undefined;
     for (const favourite of favourites) { 
-        if (favourite.id == clickedSerie) {
-            selectedSerie = serie;
-        }
+         if (favourite.id == clickedSerie) {
+            serieInFavourites = favourite;
+         }
     }
-    //add to favourites array
-    favourites.push({
-        name: selectedSerie.show.name,
-        image: selectedSerie.show.image.medium,
-        id: selectedSerie.show.id
-    });
+    if (serieInFavourites === undefined){
+        //Asociate id with element from array
+        let selectedSerie = {};
+        for (const serie of series) { 
+            if (serie.show.id == clickedSerie) {
+                selectedSerie = serie;
+            }
+        }
+        //add to favourites array
+        
+        const newFavouriteSerie = {
+            name: selectedSerie.show.name,
+            image: selectedSerie.show.image.medium,
+            id: selectedSerie.show.id
+        };
+        favourites.push(newFavouriteSerie);
+        }
     setInLocalStorage ();
     paintFavouriteSeries ();
-};
+    }
+
 
 //Add to LocalStorage
 const setInLocalStorage = () => {
@@ -94,8 +99,8 @@ const setInLocalStorage = () => {
 const getFavouriteHtmlCode = favourite => {
     let favouriteHtmlCode = '';
     favouriteHtmlCode += `<li class='favourite-li'>`;
-    favouriteHtmlCode += `<p>${favourite.name}</p>`;
     favouriteHtmlCode += `<img class='favourite-img' src='${favourite.image}' alt='${favourite.name}'>`;
+    favouriteHtmlCode += `<p>${favourite.name}</p>`;
     favouriteHtmlCode += `</li>`;
     return favouriteHtmlCode; 
 }
