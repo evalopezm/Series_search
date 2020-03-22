@@ -40,11 +40,6 @@ function paintFoundSeries () {
     ListenSelectedSerie ();
 }
 
-//Unify favourites actions
-// function favActions (){
-//     addSerieToFavourites ();
-//     changeFavouriteColor ()
-// }
 
 //Add to favourites
 function addSerieToFavourites (ev) {
@@ -53,9 +48,9 @@ function addSerieToFavourites (ev) {
     //search in favs (add or not to add an item already there)
     let serieInFavourites = undefined;
     for (const favourite of favourites) { 
-         if (favourite.id == clickedSerie) {
+        if (favourite.id == clickedSerie) {
             serieInFavourites = favourite;
-         }
+        }
     }
     if (serieInFavourites === undefined){
         //Asociate id with element from array
@@ -66,33 +61,32 @@ function addSerieToFavourites (ev) {
             }
         }
         //add to favourites array
-        
         const newFavouriteSerie = {
             name: selectedSerie.show.name,
             image: selectedSerie.show.image.medium,
             id: selectedSerie.show.id
         };
         favourites.push(newFavouriteSerie);
-        }
+    }
     setInLocalStorage ();
     paintFavouriteSeries ();
-    }
+}
 
 
 //Add to LocalStorage
 const setInLocalStorage = () => {
     const favouritesInString = JSON.stringify(favourites);
     localStorage.setItem('favourites', favouritesInString);
-  };
+};
 
 // Get from LocalStorage
-  const getFromLocalStorage = () => {
+const getFromLocalStorage = () => {
     const favouritesInString = localStorage.getItem('favourites');
     if (favouritesInString !== null) {
-      favourites = JSON.parse(favouritesInString);
-      paintFavouriteSeries();
+        favourites = JSON.parse(favouritesInString);
+        paintFavouriteSeries();
     } 
-  };
+};
 
 
 //Paint favourites
@@ -105,11 +99,18 @@ const getFavouriteHtmlCode = favourite => {
     favouriteHtmlCode += `</li>`;
     return favouriteHtmlCode; 
 }
+
 const paintFavouriteSeries = () => {
     favouriteSeries.innerHTML = '';
     for (const favourite of favourites) {
         favouriteSeries.innerHTML += getFavouriteHtmlCode(favourite);
     }
+}
+
+//Change card colors to selected favourites
+function addFavouriteColor (ev) {
+    const clickedSerie = ev.target;
+    clickedSerie.parentElement.classList.add('favourite-serie')
 }
 
 
@@ -122,9 +123,13 @@ const ListenSelectedSerie = () => {
     const seriesCards = document.querySelectorAll('.serie-img');
     for (const serieCard of seriesCards) {
         serieCard.addEventListener('click', addSerieToFavourites);
+        serieCard.addEventListener('click', addFavouriteColor);
     }
-}
+};
 
 
-//change css
-//Others: reset button
+// // Unify favourites actions
+// function favActions (){
+//     addSerieToFavourites ();
+//     addFavouriteColor ();
+// }
