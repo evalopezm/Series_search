@@ -101,6 +101,7 @@ const getFavouriteHtmlCode = favourite => {
     favouriteHtmlCode += `<li class='favourite-li'>`;
     favouriteHtmlCode += `<img class='favourite-img' src='${favourite.image}' alt='${favourite.name}'>`;
     favouriteHtmlCode += `<p>${favourite.name}</p>`;
+    favouriteHtmlCode += `<button class='favourites-close-btn btn'>x</button>`;
     favouriteHtmlCode += `</li>`;
     return favouriteHtmlCode; 
 }

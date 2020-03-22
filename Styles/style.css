@@ -32,6 +32,10 @@ body {
     padding: 5px;
 }
 
+.favourites-list {
+    padding: 10px;
+}
+
 .favourite-serie {
     background-color: #265b5f;
     margin: 3px;
@@ -47,13 +51,19 @@ body {
 
 .favourite-li {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    padding-left: 5px;
+    margin-bottom: 10px;
 }
 
 .favourite-img {
     height: 100px;
     width: 70px;
     border-radius: 10px;
+}
+
+.btn {
+    background-color: #265b5f;
+    border-radius: 50px;
+    color: #ffbd1b;
 }
