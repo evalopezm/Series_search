@@ -112,6 +112,8 @@ const paintFavouriteSeries = () => {
 }
 
 
+//Recover favourites from localStorage when the page opens
+getFromLocalStorage ();
 //listen search button
 searchButton.addEventListener ('click', collectSearch);
 //listen click in one serie
@@ -122,8 +124,6 @@ const ListenSelectedSerie = () => {
     }
 }
 
-getFromLocalStorage ();
 
 //change css
-//If series is in favourites, else....
 //Others: reset button
