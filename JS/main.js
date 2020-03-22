@@ -7,7 +7,9 @@ const foundSeries = document.querySelector('.found-series');
 const favouriteSeries = document.querySelector('.js-favourite-serie-card');
 
 
+//Search results
 let series = [];
+//Favourites list
 let favourites = [];
 
 //Read input and call the API
@@ -29,10 +31,10 @@ function paintFoundSeries () {
         serieData += `<h2 class='serie-title'>${serie.show.name}</h2>`
         //Resolve lost pictures 
         if (serie.show.image === null){
-            serieData += `<img class='serie-img' src='https://via.placeholder.com/210x295/ffffff/666666?text=Best+TV+Series' alt='${serie.show.name}' id='${serie.show.id}'>`
+            serieData += `<img class='serie-img' src='https://via.placeholder.com/210x295/265b5f/D3D3D3?text=Best+TV+Series' alt='${serie.show.name}' title='Add to favourites' id='${serie.show.id}'>`
         }
         else {
-            serieData += `<img class='serie-img' src='${serie.show.image.medium}' alt='${serie.show.name}' id='${serie.show.id}'>`
+            serieData += `<img class='serie-img' src='${serie.show.image.medium}' alt='${serie.show.name}' title='Add to favourites' id='${serie.show.id}'>`
         }
         serieData +=`</article>`
     }
@@ -48,7 +50,8 @@ function addSerieToFavourites (ev) {
     //search in favs (add or not to add an item already there)
     let serieInFavourites = undefined;
     for (const favourite of favourites) { 
-        if (favourite.id == clickedSerie) {
+        // debugger;
+        if (favourite.id === parseInt(clickedSerie)) {
             serieInFavourites = favourite;
         }
     }
@@ -56,7 +59,7 @@ function addSerieToFavourites (ev) {
         //Asociate id with element from array
         let selectedSerie = {};
         for (const serie of series) { 
-            if (serie.show.id == clickedSerie) {
+            if (serie.show.id === parseInt(clickedSerie)) {
                 selectedSerie = serie;
             }
         }
@@ -95,7 +98,7 @@ const getFavouriteHtmlCode = favourite => {
     favouriteHtmlCode += `<li class='favourite-li'>`;
     favouriteHtmlCode += `<img class='favourite-img' src='${favourite.image}' alt='${favourite.name}'>`;
     favouriteHtmlCode += `<p>${favourite.name}</p>`;
-    favouriteHtmlCode += `<button class='favourites-close-btn btn'>x</button>`;
+    favouriteHtmlCode += `<button class='btn favourites-delete-btn' id='${favourite.id}' title='Borrar de favoritos'>x</button>`;
     favouriteHtmlCode += `</li>`;
     return favouriteHtmlCode; 
 }
@@ -105,6 +108,7 @@ const paintFavouriteSeries = () => {
     for (const favourite of favourites) {
         favouriteSeries.innerHTML += getFavouriteHtmlCode(favourite);
     }
+    favouriteSeries.innerHTML += `<button class='btn'>Limpiar Favoritos</button>`;
 }
 
 //Change card colors to selected favourites
@@ -113,9 +117,16 @@ function addFavouriteColor (ev) {
     clickedSerie.parentElement.classList.add('favourite-serie')
 }
 
-
 //Recover favourites from localStorage when the page opens
 getFromLocalStorage ();
+
+//Delete from Favourites
+// function deleteFromFavourites (ev) {
+//     const clickedBtn = ev.target.id;
+//     console.log('borro de favoritos:', clickedBtn);
+// }
+
+
 //listen search button
 searchButton.addEventListener ('click', collectSearch);
 //listen click in one serie
@@ -126,10 +137,10 @@ const ListenSelectedSerie = () => {
         serieCard.addEventListener('click', addFavouriteColor);
     }
 };
+//Listen delete favourite button
+const listenDeleteBtn = () => {
+    const FavouriteDeleteBtns = document.querySelectorAll('.favourites-delete-btn');
+   console.log (FavouriteDeleteBtns);
+}
 
 
-// // Unify favourites actions
-// function favActions (){
-//     addSerieToFavourites ();
-//     addFavouriteColor ();
-// }
