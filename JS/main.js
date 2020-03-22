@@ -80,6 +80,16 @@ const setInLocalStorage = () => {
     localStorage.setItem('favourites', favouritesInString);
   };
 
+// Get from LocalStorage
+  const getFromLocalStorage = () => {
+    const favouritesInString = localStorage.getItem('favourites');
+    if (favouritesInString !== null) {
+      favourites = JSON.parse(favouritesInString);
+      paintFavouriteSeries();
+    } 
+  };
+
+
 //Paint favourites
 const getFavouriteHtmlCode = favourite => {
     let favouriteHtmlCode = '';
@@ -97,7 +107,6 @@ const paintFavouriteSeries = () => {
 }
 
 
-
 //listen search button
 searchButton.addEventListener ('click', collectSearch);
 //listen click in one serie
@@ -108,12 +117,8 @@ const ListenSelectedSerie = () => {
     }
 }
 
-
+getFromLocalStorage ();
 
 //change css
 //If series is in favourites, else....
-
-
-//localStorage read
-//localStorage paint
 //Others: reset button
