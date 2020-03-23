@@ -6,7 +6,6 @@ const userSearch = document.querySelector('.user-search');
 const foundSeries = document.querySelector('.found-series');
 const favouriteSeries = document.querySelector('.js-favourite-serie-card');
 
-
 //Search results
 let series = [];
 //Favourites list
@@ -108,9 +107,19 @@ const paintFavouriteSeries = () => {
     for (const favourite of favourites) {
         favouriteSeries.innerHTML += getFavouriteHtmlCode(favourite);
     }
-    favouriteSeries.innerHTML += `<button class='btn'>Limpiar Favoritos</button>`;
+    favouriteSeries.innerHTML += `<button class='btn reset-btn'>Limpiar Favoritos</button>`;
+    const clearFavourites = document.querySelector('.reset-btn');
+
+    //Listen delete all favourites button
+clearFavourites.addEventListener ('click', clearFavouritesList);
+
 }
 
+function clearFavouritesList () {
+    localStorage.clear();
+    favouriteSeries.innerHTML = '';
+    
+}
 //Change card colors to selected favourites
 function addFavouriteColor (ev) {
     const clickedSerie = ev.target;
@@ -120,11 +129,19 @@ function addFavouriteColor (ev) {
 //Recover favourites from localStorage when the page opens
 getFromLocalStorage ();
 
+// Unify listener functions
+// function favActions () {
+//     addSerieToFavourites ();
+//     addFavouriteColor ();
+// }
+
+
 //Delete from Favourites
 // function deleteFromFavourites (ev) {
 //     const clickedBtn = ev.target.id;
 //     console.log('borro de favoritos:', clickedBtn);
 // }
+
 
 
 //listen search button
