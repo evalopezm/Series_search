@@ -26,11 +26,17 @@ function paintFoundSeries() {
   let serieData = "";
   for (const serie of series) {
     // Favourite series already appear selected in new searchs
-    // if (true) {
-    //   serieData += `<article class='serie-card favourite-serie'>`;
-    // } else {
-    serieData += `<article class='serie-card'>`;
-    // }
+    let serieInFavourites = false;
+    for (const favourite of favourites) {
+      if (favourite.id === serie.show.id) {
+        serieInFavourites = true;
+      }
+    }
+    if (serieInFavourites) {
+      serieData += `<article class='serie-card favourite-serie'>`;
+    } else {
+      serieData += `<article class='serie-card'>`;
+    }
     serieData += `<h2 class='serie-title'>${serie.show.name}</h2>`;
     //Resolve lost pictures
     if (serie.show.image === null) {
@@ -115,7 +121,7 @@ const paintFavouriteSeries = () => {
   clearFavourites.addEventListener("click", clearFavouritesList);
 
   // Delete serie from favourites
-  //   listenDeleteBtn();
+  // listenDeleteBtn();
 };
 
 //Change card colors to selected favourites
@@ -126,8 +132,10 @@ function addFavouriteColor(ev) {
 
 //Delete favourites from list, storage and css class
 function clearFavouritesList() {
-  localStorage.clear();
-  favouriteSeries.innerHTML = "";
+  favourites = [];
+  paintFavouriteSeries();
+  paintFoundSeries();
+  setInLocalStorage();
 }
 
 // Unify listener functions
@@ -145,10 +153,11 @@ const ListenSelectedSerie = () => {
   const seriesCards = document.querySelectorAll(".serie-img");
   for (const serieCard of seriesCards) {
     serieCard.addEventListener("click", addSerieToFavourites);
-    serieCard.addEventListener("click", addFavouriteColor);
+    // serieCard.addEventListener("click", addFavouriteColor);
   }
 };
-
-//Recover favourites from localStorage when the page opens
-getFromLocalStorage();
++(
+  //Recover favourites from localStorage when the page opens
+  getFromLocalStorage()
+);
 collectSearch();
