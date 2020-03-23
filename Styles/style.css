@@ -1,69 +1,68 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 30px;
-    box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
 .main-box {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-around;
-    
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
 }
 
 .title {
-    color: rgb(97, 96, 96);
+  color: rgb(97, 96, 96);
 }
 
 .found-series {
-    box-sizing: border-box;
-    width: 60vw;
-    border-left: 3px solid lightgray;
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: 30px;
+  box-sizing: border-box;
+  width: 60vw;
+  border-left: 3px solid lightgray;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 30px;
 }
 
 .serie-card {
-    background-color: #ffbd1b;
-    margin: 3px;
-    color: #265b5f;
-    border-radius: 10px;
-    padding: 5px;
+  background-color: #ffbd1b;
+  margin: 3px;
+  color: #265b5f;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .favourites-list {
-    padding: 10px;
+  padding: 10px;
 }
 
 .favourite-serie {
-    background-color: #265b5f;
-    margin: 3px;
-    color:  #ffbd1b;
-    border-radius: 10px;
-    padding: 5px;
+  background-color: #265b5f;
+  margin: 3px;
+  color: #ffbd1b;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .js-favourite-serie-card {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .favourite-li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .favourite-img {
-    height: 100px;
-    width: 70px;
-    border-radius: 10px;
+  height: 100px;
+  width: 70px;
+  border-radius: 10px;
 }
 
 .btn {
-    background-color: #265b5f;
-    border-radius: 50px;
-    color: #ffbd1b;
+  background-color: #265b5f;
+  border-radius: 50px;
+  color: #ffbd1b;
 }
