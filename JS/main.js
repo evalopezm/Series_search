@@ -124,12 +124,6 @@ const paintFavouriteSeries = () => {
   // listenDeleteBtn();
 };
 
-//Change card colors to selected favourites
-function addFavouriteColor(ev) {
-  const clickedSerie = ev.target;
-  clickedSerie.parentElement.classList.add("favourite-serie");
-}
-
 //Delete favourites from list, storage and css class
 function clearFavouritesList() {
   favourites = [];
@@ -138,26 +132,17 @@ function clearFavouritesList() {
   setInLocalStorage();
 }
 
-// Unify listener functions
-// function favActions(ev) {
-//   addSerieToFavourites(ev);
-//   addFavouriteColor(ev);
-// }
-
 //listen search button
 searchButton.addEventListener("click", collectSearch);
 
 //listen click in one serie
 const ListenSelectedSerie = () => {
-  //   debugger;
   const seriesCards = document.querySelectorAll(".serie-img");
   for (const serieCard of seriesCards) {
     serieCard.addEventListener("click", addSerieToFavourites);
-    // serieCard.addEventListener("click", addFavouriteColor);
   }
 };
-+(
-  //Recover favourites from localStorage when the page opens
-  getFromLocalStorage()
-);
+
+//Recover favourites from localStorage when the page opens
+getFromLocalStorage();
 collectSearch();
