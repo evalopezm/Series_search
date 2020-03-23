@@ -126,7 +126,6 @@ function addFavouriteColor(ev) {
 
 //Delete favourites from list, storage and css class
 function clearFavouritesList() {
-  // debugger;
   localStorage.clear();
   favouriteSeries.innerHTML = "";
 }
@@ -142,6 +141,7 @@ searchButton.addEventListener("click", collectSearch);
 
 //listen click in one serie
 const ListenSelectedSerie = () => {
+  //   debugger;
   const seriesCards = document.querySelectorAll(".serie-img");
   for (const serieCard of seriesCards) {
     serieCard.addEventListener("click", addSerieToFavourites);
