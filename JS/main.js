@@ -30,7 +30,7 @@ function paintFoundSeries () {
         serieData += `<h2 class='serie-title'>${serie.show.name}</h2>`
         //Resolve lost pictures 
         if (serie.show.image === null){
-            serieData += `<img class='serie-img' src='https://via.placeholder.com/210x295/265b5f/D3D3D3?text=Best+TV+Series' alt='${serie.show.name}' title='Add to favourites' id='${serie.show.id}'>`
+            serieData += `<img class='serie-img' src='https://via.placeholder.com/210x295/4c6f72/D3D3D3?text=Best+TV+Series' alt='${serie.show.name}' title='Add to favourites' id='${serie.show.id}'>`
         }
         else {
             serieData += `<img class='serie-img' src='${serie.show.image.medium}' alt='${serie.show.name}' title='Add to favourites' id='${serie.show.id}'>`
@@ -41,6 +41,7 @@ function paintFoundSeries () {
     ListenSelectedSerie ();
 }
 
+let serieCard = document.querySelector ('.serie-card');
 
 //Add to favourites
 function addSerieToFavourites (ev) {
@@ -49,7 +50,6 @@ function addSerieToFavourites (ev) {
     //search in favs (add or not to add an item already there)
     let serieInFavourites = undefined;
     for (const favourite of favourites) { 
-        // debugger;
         if (favourite.id === parseInt(clickedSerie)) {
             serieInFavourites = favourite;
         }
@@ -66,7 +66,7 @@ function addSerieToFavourites (ev) {
         const newFavouriteSerie = {
             name: selectedSerie.show.name,
             image: selectedSerie.show.image.medium,
-            id: selectedSerie.show.id
+            id: selectedSerie.show.id,
         };
         favourites.push(newFavouriteSerie);
     }
@@ -115,15 +115,27 @@ clearFavourites.addEventListener ('click', clearFavouritesList);
 
 }
 
-function clearFavouritesList () {
-    localStorage.clear();
-    favouriteSeries.innerHTML = '';
-    
-}
 //Change card colors to selected favourites
 function addFavouriteColor (ev) {
     const clickedSerie = ev.target;
     clickedSerie.parentElement.classList.add('favourite-serie')
+
+    // if (clikedSerie.parentElement.classList.contains ('.favourite-serie')) {
+    //     clickedSerie.parentElement.classList.remove ('.favourite-serie')
+    // }
+    // else {
+    // clickedSerie.parentElement.classList.add('favourite-serie')
+    // }
+}
+
+//Delete favourites from list, storage and css class
+function clearFavouritesList () {
+    // debugger;
+    localStorage.clear();
+    favouriteSeries.innerHTML = '';
+    // if (serieCard.classList.contains ('.favourite-serie')) {
+    //     serieCard.classList.remove ('.favourite-serie')
+    // }
 }
 
 //Recover favourites from localStorage when the page opens
