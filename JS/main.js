@@ -13,7 +13,7 @@ let favourites = [];
 
 //Read input and call the API
 function collectSearch() {
-  fetch(`http://api.tvmaze.com/search/shows?q=:${userSearch.value}`)
+  fetch(`https://api.tvmaze.com/search/shows?q=:${userSearch.value}`)
     .then(response => response.json())
     .then(data => {
       series = data;
