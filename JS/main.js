@@ -13,7 +13,7 @@ let favourites = [];
 
 //Read input and call the API
 function collectSearch() {
-  fetch(`https://api.tvmaze.com/search/shows?q=:${userSearch.value}`)
+  fetch(`//api.tvmaze.com/search/shows?q=:${userSearch.value}`)
     .then(response => response.json())
     .then(data => {
       series = data;
@@ -69,6 +69,7 @@ function addSerieToFavourites(ev) {
         selectedSerie = serie;
       }
     }
+
     //add to favourites array
     const newFavouriteSerie = {
       name: selectedSerie.show.name,
