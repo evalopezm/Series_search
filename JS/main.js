@@ -54,7 +54,6 @@ function paintFoundSeries() {
 
 //Add to favourites
 function changeSerieStatus(ev) {
-  // debugger;
   //identify clicked element id
   const clickedSerie = ev.target.id;
   //search in favs (to add or not to add an item already there)
@@ -127,13 +126,31 @@ const paintFavouriteSeries = () => {
   }
   favouriteSeries.innerHTML += `<button class='btn reset-btn'>Limpiar Favoritos</button>`;
 
-  //Clear all favourite series
-  const clearFavourites = document.querySelector(".reset-btn");
-  //Listen clear all favourites button
-  clearFavourites.addEventListener("click", clearFavouritesList);
+  // X btn
+  const listenXBtn = () => {
+    const xBtns = document.querySelectorAll(".favourites-delete-btn");
+    for (const xBtn of xBtns) {
+      xBtn.addEventListener("click", removeFromFavourites);
+    }
 
-  // Delete serie from favourites
-  // listenDeleteBtn();
+    //Delete 1 selected item from favourites using X btn
+    function removeFromFavourites(ev) {
+      //identify clicked element id
+      const serieToDelete = ev.target.id;
+      console.log(serieToDelete);
+      // for (favourite of favourites) {
+      //   if (serieToDelete === favourites.id) {
+      // }
+      // }
+    }
+
+    //Clear all favourite series
+    const clearFavourites = document.querySelector(".reset-btn");
+    //Listen clear all favourites button
+    clearFavourites.addEventListener("click", clearFavouritesList);
+  };
+
+  listenXBtn();
 };
 
 //Delete favourites from list, storage and css class
@@ -155,17 +172,15 @@ const listenSelectedSerie = () => {
   }
 };
 
+//Listen x button
+// const listenXBtn = () => {
+//   const xBtns = document.querySelectorAll(".favourites-delete-btn");
+//   for (const xBtn of xBtns) {
+//     xBtn.addEventListener("click", console.log("hello"));
+//   }
+// };
+
 //Recover favourites from localStorage when the page opens
 getFromLocalStorage();
 //Call the API when the page opens
 collectSearch();
-
-// Delete serie from favourites
-//   const listenDeleteBtn = () => {
-//     const deleteBtns = document.querySelectorAll(".delete");
-//     for (const deleteBtn of deleteBtns) {
-//       deleteBtn.addEventListener("click", console.log("hello"));
-//     }
-//   };
-//   listenDeleteBtn();
-//Clear all favourite series
