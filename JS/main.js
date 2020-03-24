@@ -5,10 +5,11 @@ const searchButton = document.querySelector(".search-btn");
 const userSearch = document.querySelector(".user-search");
 const foundSeries = document.querySelector(".found-series");
 const favouriteSeries = document.querySelector(".js-favourite-serie-card");
+const clearFavourites = document.querySelector(".reset-btn");
 
-//Search results
+//Search results array
 let series = [];
-//Favourites list
+//Favourites list array
 let favourites = [];
 
 //Read input and call the API
@@ -37,6 +38,7 @@ function paintFoundSeries() {
     } else {
       serieData += `<article class='serie-card'>`;
     }
+    //
     serieData += `<h2 class='serie-title'>${serie.show.name}</h2>`;
     //Resolve lost pictures
     if (serie.show.image === null) {
@@ -47,11 +49,12 @@ function paintFoundSeries() {
     serieData += `</article>`;
   }
   foundSeries.innerHTML = serieData;
-  ListenSelectedSerie();
+  listenSelectedSerie();
 }
 
 //Add to favourites
-function addSerieToFavourites(ev) {
+function changeSerieStatus(ev) {
+  // debugger;
   //identify clicked element id
   const clickedSerie = ev.target.id;
   //search in favs (to add or not to add an item already there)
@@ -69,7 +72,6 @@ function addSerieToFavourites(ev) {
         selectedSerie = serie;
       }
     }
-
     //add to favourites array
     const newFavouriteSerie = {
       name: selectedSerie.show.name,
@@ -77,7 +79,16 @@ function addSerieToFavourites(ev) {
       id: selectedSerie.show.id
     };
     favourites.push(newFavouriteSerie);
+
+    //Delete serie from favourites, clicking in the searched serie
+  } else if (serieInFavourites.id === parseInt(clickedSerie)) {
+    let favouriteToDelete = serieInFavourites;
+    //find the position of the serie in the favourites array
+    let indexToDelete = favourites.indexOf(favouriteToDelete);
+    //delete the serie in the index position found
+    favourites.splice(indexToDelete, 1);
   }
+
   setInLocalStorage();
   paintFoundSeries();
   paintFavouriteSeries();
@@ -137,13 +148,24 @@ function clearFavouritesList() {
 searchButton.addEventListener("click", collectSearch);
 
 //listen click in one serie
-const ListenSelectedSerie = () => {
+const listenSelectedSerie = () => {
   const seriesCards = document.querySelectorAll(".serie-img");
   for (const serieCard of seriesCards) {
-    serieCard.addEventListener("click", addSerieToFavourites);
+    serieCard.addEventListener("click", changeSerieStatus);
   }
 };
 
 //Recover favourites from localStorage when the page opens
 getFromLocalStorage();
+//Call the API when the page opens
 collectSearch();
+
+// Delete serie from favourites
+//   const listenDeleteBtn = () => {
+//     const deleteBtns = document.querySelectorAll(".delete");
+//     for (const deleteBtn of deleteBtns) {
+//       deleteBtn.addEventListener("click", console.log("hello"));
+//     }
+//   };
+//   listenDeleteBtn();
+//Clear all favourite series
