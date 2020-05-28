@@ -52,7 +52,7 @@ function paintFoundSeries() {
   listenSelectedSerie();
 }
 
-//Add to favourites
+//Add and remove from favourites
 function changeSerieStatus(ev) {
   //identify clicked element id
   const clickedSerie = ev.target.id;
@@ -113,7 +113,7 @@ const getFavouriteHtmlCode = favourite => {
   let favouriteHtmlCode = "";
   favouriteHtmlCode += `<li class='favourite-li'>`;
   favouriteHtmlCode += `<img class='favourite-img' src='${favourite.image}' alt='${favourite.name}'>`;
-  favouriteHtmlCode += `<p>${favourite.name}</p>`;
+  favouriteHtmlCode += `<p>${favourite.name.toUpperCase()}</p>`;
   favouriteHtmlCode += `<button class='btn favourites-delete-btn' id='${favourite.id}' title='Borrar de favoritos'>x</button>`;
   favouriteHtmlCode += `</li>`;
   return favouriteHtmlCode;
@@ -126,7 +126,7 @@ const paintFavouriteSeries = () => {
   }
   favouriteSeries.innerHTML += `<button class='btn reset-btn'>Limpiar Favoritos</button>`;
 
-  // X btn
+  // X btn listener
   const listenXBtn = () => {
     const xBtns = document.querySelectorAll(".favourites-delete-btn");
     for (const xBtn of xBtns) {
