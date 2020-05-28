@@ -14,6 +14,9 @@ body {
   color: rgb(97, 96, 96);
 }
 
+.favourite-series {
+  border-bottom: double 3px lightgray;
+}
 .found-series {
   box-sizing: border-box;
   width: 60vw;
