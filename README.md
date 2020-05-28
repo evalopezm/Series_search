@@ -1,5 +1,5 @@
-# modulo-2-evaluacion-final-evalopezm
-modulo-2-evaluacion-final-evalopezm created by GitHub Classroom
+# Buscador de series
+modulo-2-evaluacion-final-evalopezm
 
 
 :pushpin: 2nd Term Evaluation Project: Creating a favourite Series archive.
